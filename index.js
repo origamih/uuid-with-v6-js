@@ -1,7 +1,7 @@
-const crypto = require('crypto');
 const v1 = require('uuid/v1');
 const v4 = require('uuid/v4');
 const v5 = require('uuid/v5');
+const randomBytes = require('randombytes');
 
 function create(opts) {
   const options = opts || {};
@@ -18,7 +18,7 @@ function create(opts) {
       return `${prefixFormatted}${raw.substr(18)}`;
     }
 
-    const random = crypto.randomBytes(8).toString('hex');
+    const random = randomBytes(8).toString('hex');
 
     return `${prefixFormatted}-${random.substring(0, 4)}-${random.substring(4)}`;
   }
